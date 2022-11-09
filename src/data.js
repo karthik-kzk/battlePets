@@ -54,17 +54,30 @@ export const data = [{
 ]
 
 
-let battlePetsData=[
+export const battlePetsData=[
     {
         battlePetId:1,
         battlePetName:"small Worm",
-        attackSkill:[{
+        attackList:[{
             name:"nothing",
             damage:0
         },{
             name: "bite",
             damage: 3
         }],
+        lifeCount:20,
+    },
+    {
+        battlePetId:2,
+        battlePetName:"small Chicken",
+        attackList:[{
+            name:"Peck",
+            damage:5
+        },{
+            name: "Jump Attack",
+            damage: 6
+        }],
+        lifeCount:30,
     }
 ]
 
