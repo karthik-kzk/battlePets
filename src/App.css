@@ -148,3 +148,18 @@
   border-width: 5px;
   border-color: red;
 }
+
+.enemyLifeBar {
+  position: absolute;
+  top: 4px;
+  left: 59%;
+  border: 1px green solid;
+  width: 20%;
+}
+.playerLifeBar {
+  position: absolute;
+  top: 4px;
+  left: 19%;
+  border: 1px green solid;
+  width: 20%;
+}

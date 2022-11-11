@@ -29,7 +29,7 @@ export const data = [{
         dialog: "lets start",
         dialogBoxCss: "dialogCenter",
         characterImg: require("./images/introDog.png"),
-    characterCss: "centerImage",
+        characterCss: "centerImage",
         attack1: "Peck",
         attack2: "jump Attack",
         battleReady: false,
@@ -59,13 +59,15 @@ export const battlePetsData=[
         battlePetId:1,
         battlePetName:"small Worm",
         attackList:[{
-            name:"nothing",
+            name:"tailAttack",
             damage:0
         },{
             name: "bite",
             damage: 3
         }],
         lifeCount:20,
+        characterImg: require("./images/smallWorm.png"),
+        characterCss: "rightImage",
     },
     {
         battlePetId:2,
@@ -78,6 +80,8 @@ export const battlePetsData=[
             damage: 6
         }],
         lifeCount:30,
+        characterImg: require("./images/smallChicken.png"),
+        characterCss: "leftImage",
     }
 ]
 

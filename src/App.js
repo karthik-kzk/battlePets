@@ -21,7 +21,7 @@ function App() {
     player:1,
     enemy:0
   })
-  const [state, setState] = useState(data.length - 1);
+  const [state, setState] = useState(0);
   const [enemyScore, setEnemyScore] = useState(20);
   const [attackName, setAttackName] = useState("");
   const [battleMode, setBattleMode] = useState({
@@ -46,7 +46,8 @@ function App() {
     // console.log(data[0])
     // console.log(data[state].battleReady && enemyScore > 0,'stop')
     console.log(battleMode,"battle1")
-    console.log(enemyTurn,"name")
+    console.log(enemyTurn,"enemyTurn")
+    battleDetailCard()
     // console.log(sake,"sake")
   }, [enemyTurn]);
 
@@ -56,56 +57,66 @@ function App() {
     }
     if (state === data.length - 1) {
       setState(0);
-      setEnemyScore(20)
+      // setEnemyScore(20)
 
     } else {
       setState(state + 1);
     }    
   }
 
-  function attackPoints(attackPoints,attackName){
-    setAttackName(attackName)
-    setSake(true)
-    setTimeout(()=>setSake(false), 1000)
-   if(!enemyTurn){
-    if (attackPoints > battleMode.enemyLife){      
-      setBattleMode({
-        ...battleMode,enemyLife:0
-      })      
-    } else{
-      setBattleMode({
-        ...battleMode,enemyLife:battleMode.enemyLife-5
-      })
+  function battleDetailCard() {
+    let cardData = {}
+    if (enemyTurn) {
+      cardData.characterName = battleMode.playerPetName
+      cardData.attackName = attackName
+    } else {
+      cardData.characterName = battleMode.enemyPetName
+      cardData.attackName = battleMode.enemyPetAttackList[getRandomInt(2)].name
+     
     }
-   } 
-
-   setEnemyTurn(!enemyTurn)
-    // setTimeout(()=>setBattleMode({enemyTurn:false}), 2000)
-    if(enemyTurn){
-      setBattleMode({
-        ...battleMode,playerLife:battleMode.playerLife-5
-      })
-    }
+    
+    return (
+      <BattleDetailCard characterName={cardData.characterName} attackName={cardData.attackName} className={`battleDetailCard  `} />
+    )
   }
 
-  // function attackPoints(attackPoints,attackName){
-  //   setAttackName(attackName)
-  //   setSake(true)
- 
- 
-  
+  function attackPoints(attackPoints,attackName){
+    setAttackName(attackName)
+    // setSake(true)
+    // setTimeout(()=>setSake(false), 1000)
+    if (battleMode.enemyLife == 0){
+      setTimeout(()=>{
+        window.location.reload()
+      },2000)
+      return alert("you have won the game")
+      
+   }
+    if (attackPoints >= battleMode.enemyLife){      
+      setBattleMode({
+        ...battleMode,enemyLife:0
+      })  
+      alert("you have won the game")    
+    } else {
+    // if(!enemyTurn){
+    setBattleMode((previousVal)=>({
+      ...previousVal, enemyLife: previousVal.enemyLife-5
+    })) 
+  }
+    setEnemyTurn((previousVal) => !previousVal)
+    // }   
+    
+    if (battleMode.enemyLife != 0) {
+      setTimeout(() =>{
+      
+       
+        setEnemyTurn(enemyTurn => !enemyTurn)
+        setBattleMode((previousVal) =>({
+          ...previousVal, playerLife: previousVal.playerLife - 5
+        }))       
+    }, 2000) 
+  }
 
-
-  // setBattleMode({
-  //     ...battleMode,enemyTurn:!battleMode.enemyTurn
-  //   })
-  //   // setTimeout(()=>setBattleMode({enemyTurn:false}), 2000)
-  //   // if(battleMode.enemyTurn){
-  //   //   setBattleMode({
-  //   //     ...battleMode,playerLife:battleMode.playerLife-5
-  //   //   })
-  //   // }
-  // }
+  } 
 
   function fightCard(){
     
@@ -117,20 +128,7 @@ function App() {
     )
   }
 
-  function battleDetailCard(){
-    let cardData={}
-if(battleMode.enemyTurn===false){
-  cardData.characterName=battleMode.playerPetName
-  cardData.attackName=attackName
-}else{
-  cardData.characterName=battleMode.enemyPetName
-  cardData.attackName=battleMode.enemyPetAttackList[0].name
-}
-// console.log(battleMode,'91')
-    return(
-      <BattleDetailCard characterName={cardData.characterName} attackName={cardData.attackName} className={`battleDetailCard  `} />
-    )
-  }
+
 
   return (
     <div className="App">
@@ -150,10 +148,25 @@ if(battleMode.enemyTurn===false){
           }
           {/* enemy score */}
         {data[state].battleReady&&
-          <button className='rounded-pill playerLife' >{battleMode.playerLife}</button>}
+          <>
+          <div className="progress playerLifeBar">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              style={{ width: `${percentage(battleMode.playerLife, battlePetsData[petId.player].lifeCount)}%` }}
+              aria-valuenow={battleMode.playerLife}
+              aria-valuemin={0}
+              aria-valuemax={battlePetsData[petId.player].lifeCount}
+            >
+              {battleMode.playerLife}
+            </div>
+            </div>
+          <button className='rounded-pill playerLife' >{battleMode.playerLife}</button>
+        </>
+        }        
         {/* player score */}
         {data[state].battleReady&&
-        <><div className="progress">
+        <><div className="progress enemyLifeBar">
           <div
             className="progress-bar"
             role="progressbar"
