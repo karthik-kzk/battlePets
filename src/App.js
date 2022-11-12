@@ -8,20 +8,30 @@ import Card from './components/card';
 import BattleDetailCard from './components/battleDetailCard';
 import FightCard from './components/fightCard';
 import { data, battlePetsData } from './data';
+import { permutation } from './permutation';
 
 
 function percentage(val, totalValue) {
   return (val / totalValue * 100)
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function App() {
+let   randomNo= getRandomInt(90);
+console.log(randomNo)
+  console.log(permutation[`${randomNo}`][0])
+  console.log(battlePetsData[permutation[`${randomNo}`][0]])
+
   const [nextClick, setNextClick] = useState(false);
   const [enemyTurn, setEnemyTurn] = useState(false);
-  const [petId, setPetId] = useState({
-    player: 1,
-    enemy: 0
+  const [petId, setPetId] = useState({   
+    player: permutation[`${randomNo}`][0],
+    enemy: permutation[`${randomNo}`][1],
   })
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(data.length-1);
   const [enemyScore, setEnemyScore] = useState(20);
   const [attackName, setAttackName] = useState("");
   const [battleMode, setBattleMode] = useState({
@@ -35,13 +45,13 @@ function App() {
     playerPetName: battlePetsData[petId.player].battlePetName,
     enemyPetAttackList: battlePetsData[petId.enemy].attackList,
     playerPetAttackList: battlePetsData[petId.player].attackList,
+    enemyImg: battlePetsData[petId.enemy].characterImg,
+    playerImg: battlePetsData[petId.player].characterImg,
     showBattleLog: false,
   });
   const [sake, setSake] = useState(false);
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
+
   useEffect(() => {
     // console.log(state, "count");
     // console.log(data[0])
@@ -131,7 +141,7 @@ function App() {
   function fightCard() {
     let card
     if (!battleMode.showBattleLog) {
-      card = <FightCard attack1={data[state].attack1} attack2={data[state].attack2}
+      card = <FightCard attack1={battleMode.playerPetAttackList[0].name} attack2={battleMode.playerPetAttackList[1].name}
         className={'cardSize'}
         attackPoints={attackPoints} />
     } else {
@@ -172,14 +182,14 @@ function App() {
       <div className="enemyImage enemy ">
         {/* enemy image */}
         {data[state].battleReady &&
-          <>    <img src={data[state].enemyImg} alt='sample' className={`enemyImageTag ${enemyTurn && 'horizontal-shake attackEffect'}`} />
+          <>    <img src={battleMode.enemyImg} alt='sample' className={`enemyImageTag ${enemyTurn && 'horizontal-shake attackEffect'}`} />
             <span className='dot'></span></>}
 
       </div>
 
       <div className="playerImage player" >
         {/* player image */}
-        <img src={data[state].characterImg} alt='sample' className={`image ${!enemyTurn && 'horizontal-shake attackEffect'}`} />
+        <img src={battleMode.playerImg} alt='sample' className={`image ${!enemyTurn && 'horizontal-shake attackEffect'}`} />
       </div>
 
       <div className="playerBar player">
@@ -212,6 +222,7 @@ function App() {
             : <Card body={data[state].dialog} />
         }
         <button onClick={() => increment()} className='btn btn-primary '>Next</button>
+        <button onClick={() => setState(data.length-1)} className='btn btn-primary '>Skip</button>
 
       </div>
     </div>
