@@ -44,7 +44,7 @@
   width: auto;
   height: 156px;
   /* background-color: powderblue; */
-  right: 10%;
+  right: 115px;
 }
 
 .rightImage {
@@ -52,7 +52,8 @@
   width: auto;
   height: 156px;
   /* background-color: powderblue; */
-  left: 10%;
+  left: 153px;
+  top: 20px;
 }
 
 .centerImage {
@@ -101,7 +102,7 @@
 .dialogCenter {
   position: absolute;
   top: 180px;
-  left: 41%;
+  left: 28%;
   border: 1px green solid;
 }
 
@@ -120,15 +121,15 @@
 
 .nextButton {
   position: absolute;
-  top: 400px;
-  left: 50%;
+  top: 312px;
+  left: 40%;
 }
 
-.battleDetailCard{
-    position: absolute;
-    top: 4px;
-    left: 39%;
-    border: 2px green solid;
+.battleDetailCard {
+  position: absolute;
+  top: 4px;
+  left: 28%;
+  border: 2px green solid;
 }
 
 .horizontal-shake {
@@ -152,14 +153,14 @@
 .enemyLifeBar {
   position: absolute;
   top: 4px;
-  left: 59%;
+  left: 588px;
   border: 1px green solid;
-  width: 20%;
+  width: 200px;
 }
 .playerLifeBar {
   position: absolute;
   top: 4px;
-  left: 19%;
+  left: 114px;
   border: 1px green solid;
   width: 20%;
 }
