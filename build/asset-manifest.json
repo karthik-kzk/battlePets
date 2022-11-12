@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/battlePets/static/css/main.5decd263.css",
+    "main.js": "/battlePets/static/js/main.39e38716.js",
+    "static/js/787.eb063cca.chunk.js": "/battlePets/static/js/787.eb063cca.chunk.js",
+    "static/media/smallChicken.png": "/battlePets/static/media/smallChicken.b6ff8e51eda67b32ff55.png",
+    "static/media/introDog.png": "/battlePets/static/media/introDog.3ec25e635f3049f008da.png",
+    "static/media/smallWorm.png": "/battlePets/static/media/smallWorm.8117f259dfc2ee1cdccd.png",
+    "index.html": "/battlePets/index.html",
+    "main.5decd263.css.map": "/battlePets/static/css/main.5decd263.css.map",
+    "main.39e38716.js.map": "/battlePets/static/js/main.39e38716.js.map",
+    "787.eb063cca.chunk.js.map": "/battlePets/static/js/787.eb063cca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5decd263.css",
+    "static/js/main.39e38716.js"
+  ]
+}
