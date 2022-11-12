@@ -122,7 +122,7 @@ function App() {
     
     return(
    <FightCard attack1={data[state].attack1} attack2={data[state].attack2} 
-            className={data[state].dialogBoxCss}
+            className={''}
               attackPoints={attackPoints} />
              
     )
@@ -131,63 +131,81 @@ function App() {
 
 
   return (
-    <div className="App">
-      <div className="mainFrame">       
-        {/* <img src={turtle} alt='sample' className="leftImage" />         */}
-        {/* <img src={turtle} alt='sample' className="rightImage" />    */}
-        <img src={data[state].characterImg} alt='sample' className={`${data[state].characterCss} ${!enemyTurn&&'horizontal-shake attackEffect'}`} /> 
-        {
-        data[state].battleReady?
-        fightCard()
-            : <Card body={data[state].dialog} className={data[state].dialogBoxCss} />
-        } 
-        <button onClick={() => increment()} className='btn btn-primary nextButton'>Next</button>
-      {/* <BoostrapModel buttonName='Next' message="work in progress" />   */}
-        {data[state].battleReady && 
-          <img src={data[state].enemyImg} alt='sample' className={`${data[state].enemyCss} ${enemyTurn&&'horizontal-shake attackEffect'}`} />         
-          }
-          {/* enemy score */}
-        {data[state].battleReady&&
-          <>
-          <div className="progress playerLifeBar">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{ width: `${percentage(battleMode.playerLife, battlePetsData[petId.player].lifeCount)}%` }}
-              aria-valuenow={battleMode.playerLife}
-              aria-valuemin={0}
-              aria-valuemax={battlePetsData[petId.player].lifeCount}
-            >
-              {battleMode.playerLife}
+    <div className="App minWidth">
+      <div className="container">
+        <div className="row">
+          <div className="col test">
+            <div className="row">
+              <div className="col " style={{ 'background-color': "red" }} >
+                {data[state].battleReady &&
+                  <>
+                    <div className="progress ">
+                      <div
+                        className="progress-bar"
+                        role="progressbar"
+                        style={{ width: `${percentage(battleMode.playerLife, battlePetsData[petId.player].lifeCount)}%` }}
+                        aria-valuenow={battleMode.playerLife}
+                        aria-valuemin={0}
+                        aria-valuemax={battlePetsData[petId.player].lifeCount}
+                      >
+                        {battleMode.playerLife}
+                      </div>
+                    </div>
+                    <button className='rounded-pill playerLife' >{battleMode.playerLife}</button>
+                  </>
+                }     
+              </div>
             </div>
-            </div>
-          <button className='rounded-pill playerLife' >{battleMode.playerLife}</button>
-        </>
-        }        
-        {/* player score */}
-        {data[state].battleReady&&
-        <><div className="progress enemyLifeBar">
-          <div
-            className="progress-bar"
-            role="progressbar"
-            style={{ width: `${percentage(battleMode.enemyLife,battlePetsData[petId.enemy].lifeCount)}%` }}
-            aria-valuenow={battleMode.enemyLife}
-            aria-valuemin={0}
-            aria-valuemax={battlePetsData[petId.enemy].lifeCount}
-          >
-            {battleMode.enemyLife}
+ 
+            
+            <img src={data[state].characterImg} alt='sample' className={`${data[state].characterCss} ${!enemyTurn && 'horizontal-shake attackEffect'}`} /> 
+           
           </div>
-        </div>
-          <button className='rounded-pill enemyLife' >{battleMode.enemyLife}</button>
-          </>   
-          } 
-      
-       {data[state].battleReady       
-       && 
-       battleDetailCard()
-              }
-      
-      </div>      
+          <div className="col test">
+            <div className="row">
+              <div className="col " style={{ 'background-color': "red" }} >
+                progressbar
+              </div>
+            </div>
+            2
+            {data[state].battleReady &&
+              <img src={data[state].enemyImg} alt='sample' className={`${data[state].enemyCss} ${enemyTurn && 'horizontal-shake attackEffect'}`} />
+            }
+            {data[state].battleReady &&
+              <><div className="progress enemyLifeBar">
+                <div
+                  className="progress-bar"
+                  role="progressbar"
+                  style={{ width: `${percentage(battleMode.enemyLife, battlePetsData[petId.enemy].lifeCount)}%` }}
+                  aria-valuenow={battleMode.enemyLife}
+                  aria-valuemin={0}
+                  aria-valuemax={battlePetsData[petId.enemy].lifeCount}
+                >
+                  {battleMode.enemyLife}
+                </div>
+              </div>
+                <button className='rounded-pill enemyLife' >{battleMode.enemyLife}</button>
+              </>
+            } 
+           
+          </div>
+         
+        </div>  
+        <div className="row justify-content-center">
+          <div className="col-6" style={{'background-color':"red"}}>
+            {
+              data[state].battleReady ?
+                fightCard()
+                : <Card body={data[state].dialog}  />
+            } 
+            </div>        
+          </div>   
+        <div className="row justify-content-center">
+          <div className="col-4" style={{'background-color':""}}>
+            <button onClick={() => increment()} className='btn btn-primary '>Next</button>
+            </div>        
+          </div>   
+      </div>
     </div>
   );
 }
