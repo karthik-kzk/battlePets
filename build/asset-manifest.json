@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/battlePets/static/css/main.bc0a9c48.css",
-    "main.js": "/battlePets/static/js/main.343262d9.js",
+    "main.css": "/battlePets/static/css/main.d9546e7b.css",
+    "main.js": "/battlePets/static/js/main.b32ad7c4.js",
     "static/js/787.34b806eb.chunk.js": "/battlePets/static/js/787.34b806eb.chunk.js",
     "static/media/smallChicken.png": "/battlePets/static/media/smallChicken.b6ff8e51eda67b32ff55.png",
     "static/media/turtle.png": "/battlePets/static/media/turtle.928675f24392dd453ccc.png",
@@ -11,14 +11,15 @@
     "static/media/fox.png": "/battlePets/static/media/fox.805bdedcd27a95dbf2be.png",
     "static/media/magnet.png": "/battlePets/static/media/magnet.9057e8f3b949ea8f1ab5.png",
     "static/media/sunFlower.png": "/battlePets/static/media/sunFlower.1a26fbe82d80a719b5a3.png",
+    "static/media/workInProgress.png": "/battlePets/static/media/workInProgress.e40a9361668e5debc4a1.png",
     "static/media/cellPhone.png": "/battlePets/static/media/cellPhone.4d6417813c8c205feaca.png",
     "index.html": "/battlePets/index.html",
-    "main.bc0a9c48.css.map": "/battlePets/static/css/main.bc0a9c48.css.map",
-    "main.343262d9.js.map": "/battlePets/static/js/main.343262d9.js.map",
+    "main.d9546e7b.css.map": "/battlePets/static/css/main.d9546e7b.css.map",
+    "main.b32ad7c4.js.map": "/battlePets/static/js/main.b32ad7c4.js.map",
     "787.34b806eb.chunk.js.map": "/battlePets/static/js/787.34b806eb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc0a9c48.css",
-    "static/js/main.343262d9.js"
+    "static/css/main.d9546e7b.css",
+    "static/js/main.b32ad7c4.js"
   ]
 }
