@@ -221,5 +221,10 @@ background-color:#CFF5E7 ;
   .cardSize{
     height: 120px;
   }
+
+    .workInProgress{
+        height:30px;
+        text-align:center;
+    }
  
  

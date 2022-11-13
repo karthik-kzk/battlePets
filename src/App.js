@@ -9,6 +9,7 @@ import BattleDetailCard from './components/battleDetailCard';
 import FightCard from './components/fightCard';
 import { data, battlePetsData } from './data';
 import { permutation } from './permutation';
+import workInProgress from './images/workInProgress.png'
 
 
 function percentage(val, totalValue) {
@@ -19,19 +20,21 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+function pageReload() {
+
+}
+
 function App() {
-let   randomNo= getRandomInt(90);
-console.log(randomNo)
-  console.log(permutation[`${randomNo}`][0])
-  console.log(battlePetsData[permutation[`${randomNo}`][0]])
+  let randomNo = getRandomInt(90);
+
 
   const [nextClick, setNextClick] = useState(false);
   const [enemyTurn, setEnemyTurn] = useState(false);
-  const [petId, setPetId] = useState({   
+  const [petId, setPetId] = useState({
     player: permutation[`${randomNo}`][0],
     enemy: permutation[`${randomNo}`][1],
   })
-  const [state, setState] = useState(data.length-1);
+  const [state, setState] = useState(0);
   const [enemyScore, setEnemyScore] = useState(20);
   const [attackName, setAttackName] = useState("");
   const [battleMode, setBattleMode] = useState({
@@ -51,6 +54,9 @@ console.log(randomNo)
   });
   const [sake, setSake] = useState(false);
 
+  function replay() {
+ 
+  }
 
   useEffect(() => {
     // console.log(state, "count");
@@ -63,7 +69,7 @@ console.log(randomNo)
   }, [enemyTurn]);
 
   function increment() {
-    if (data[state].battleReady && enemyScore > 0) {
+    if (data[state].battleReady && battleMode.enemyLife > 0) {
       return alert("you have to win to proceed")
     }
     if (state === data.length - 1) {
@@ -107,7 +113,10 @@ console.log(randomNo)
         ...battleMode, enemyLife: 0,
         showBattleLog: true,
       })
-      alert("you have won the game")
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
+      return alert("you have won the game")
     } else {
       // if(!enemyTurn){
       setBattleMode((previousVal) => ({
@@ -147,21 +156,24 @@ console.log(randomNo)
     } else {
       card = battleDetailCard()
     }
-    return (card
-
-
-    )
+    return card
   }
 
 
 
   return (
+    <>
+      <div className='workInProgress'>
+        <img src={workInProgress} alt='workInProgress' className={`workInProgress`} />
+        score card to displayed
+    </div>
+   
 
     <div className="container minWidth " >
       <div className="enemyBar enemy ">
         {/* enemy pokemon name */}
-       
-        {data[state].battleReady && 
+
+        {data[state].battleReady &&
           <>{battleMode.enemyPetName}<div className="progress ">
             <div
               className="progress-bar"
@@ -194,7 +206,7 @@ console.log(randomNo)
 
       <div className="playerBar player">
         {/* playerPokemon name */}
-        
+
         {data[state].battleReady &&
           <>{battleMode.playerPetName}
             <div className="progress ">
@@ -222,10 +234,14 @@ console.log(randomNo)
             : <Card body={data[state].dialog} />
         }
         <button onClick={() => increment()} className='btn btn-primary '>Next</button>
-        <button onClick={() => setState(data.length-1)} className='btn btn-primary '>Skip</button>
-
+        <button onClick={() => setState(data.length - 1)} className='btn btn-primary '>Skip</button>
+        {/* {
+          data[state].battleReady
+          && <button onClick={() => replay()} className='btn btn-primary '>Replay</button>
+        } */}
       </div>
     </div>
+    </>
   );
 }
 
